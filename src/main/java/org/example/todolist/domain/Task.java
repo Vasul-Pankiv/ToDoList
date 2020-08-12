@@ -15,6 +15,14 @@ public class Task {
 
     private String tag;
 
+    public Task() {
+    }
+
+    public Task(String text, String tag) {
+        this.text = text;
+        this.tag = tag;
+    }
+
     public Long getId() {
         return id;
     }
