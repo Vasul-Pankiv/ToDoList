@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
     @Autowired
     private TaskRepo taskRepo;
-    @GetMapping("/greeting")
+    @GetMapping("/")
     public String greeting(Model model) {
 
         return "greeting";
     }
-    @GetMapping
+    @GetMapping("/main")
     public String main(@RequestParam (required = false,defaultValue = "")String filter,Model model){
         Iterable<Task> tasks;
         if(filter != null && !filter.isEmpty()){
@@ -31,7 +31,7 @@ public class MainController {
         model.addAttribute("filter",filter);
         return "main";
     }
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String text,@RequestParam String tag,Model model){
         Task task = new Task(text, tag);
         taskRepo.save(task);

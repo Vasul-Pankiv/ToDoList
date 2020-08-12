@@ -1,6 +1,8 @@
 <#import "parts/common.ftl" as c>
+<#import "parts/loginForm.ftl" as l>
 
 <@c.page>
+    <@l.logout/>
     <div class="form-row">
         <div class="form-group col-md-6">
             <form method="get" action="/main" class="form-inline">
