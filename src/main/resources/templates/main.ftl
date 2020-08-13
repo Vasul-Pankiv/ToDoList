@@ -2,6 +2,7 @@
 <#import "parts/loginForm.ftl" as l>
 
 <@c.page>
+    <a href="/user">User List</a>
     <@l.logout/>
     <div class="form-row">
         <div class="form-group col-md-6">
