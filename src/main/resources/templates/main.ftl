@@ -20,6 +20,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">add</button>
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
         </div>
     </form>
     <#list tasks as task>
@@ -29,7 +30,7 @@
                 <i>${task.tag}</i>
             </div>
             <div class="card-footer text-muted">
-                ${task.id}
+                ${task.author.username}
             </div>
 
         </div>
