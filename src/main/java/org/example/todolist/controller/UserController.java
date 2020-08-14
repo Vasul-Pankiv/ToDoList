@@ -5,6 +5,7 @@ import org.example.todolist.domain.User;
 import org.example.todolist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +43,34 @@ public class UserController {
         userService.saveUser(user, username, form);
 
         return "redirect:/user";
+    }
+
+    @GetMapping("/profile")
+    public String userProfile(
+            @AuthenticationPrincipal User user,
+            Model model
+    ) {
+        model.addAttribute("user",user);
+        return "profile";
+    }
+
+    @GetMapping("/profile/edit")
+    public String userProfileEdit(
+            @AuthenticationPrincipal User user,
+            Model model
+    ) {
+        model.addAttribute("user",user);
+        return "profileEdit";
+    }
+
+    @PostMapping("/profile/edit")
+    public String updateUserProfile(
+            @AuthenticationPrincipal User user,
+            @RequestParam String password,
+            @RequestParam String email
+    ){
+        userService.updateProfile(user,password,email);
+        return "redirect:/user/profile";
     }
 
 }
