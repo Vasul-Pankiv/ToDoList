@@ -3,12 +3,14 @@ package org.example.todolist.domain;
 import javax.persistence.*;
 
 @Entity
+@Table (name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String text;
+    private String title;
+    private String description;
 
     private String tag;
 
@@ -19,10 +21,19 @@ public class Task {
     public Task() {
     }
 
-    public Task(String text, String tag,User user) {
-        this.text = text;
+    public Task(String title, String description, String tag, User user) {
+        this.title = title;
+        this.description = description;
         this.tag = tag;
         this.author = user;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public User getAuthor() {
@@ -37,12 +48,12 @@ public class Task {
         return id;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String text) {
+        this.description = text;
     }
 
     public String getTag() {
