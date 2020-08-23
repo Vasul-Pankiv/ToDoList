@@ -10,8 +10,8 @@
                        value="<#if task??>${task.title}</#if>"/>
             </div>
             <div class="form-group">
-                <input type="text" name="description" class="form-control " placeholder="description"
-                       value="<#if task??>${task.description}</#if>"/>
+                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="description"
+                       value="<#if task??>${task.description}</#if>"/></textarea>
             </div>
             <div class="form-group">
                 <input type="text" name="tag" class="form-control" placeholder="tag"

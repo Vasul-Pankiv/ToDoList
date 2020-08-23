@@ -10,16 +10,13 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home </a>
-            </li>
-            <#if user??>
+            <#if currentUser??>
                 <li class="nav-item">
-                    <a class="nav-link" href="/main">Task list</a>
+                    <a class="nav-link" href="/task-list">Task list</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/task-list/${user.id}">My tasks</a>
+                    <a class="nav-link" href="/task-list?user=${currentUser.id}">My tasks</a>
                 </li>
             </#if>
             <#if isAdmin>
@@ -27,7 +24,7 @@
                     <a class="nav-link" href="/user">User list</a>
                 </li>
             </#if>
-            <#if user??>
+            <#if currentUser??>
                 <li class="nav-item">
                     <a class="nav-link" href="/user/profile">Profile</a>
                 </li>

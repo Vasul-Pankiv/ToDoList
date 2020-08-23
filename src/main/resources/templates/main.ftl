@@ -4,7 +4,7 @@
 <@c.page>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <form method="get" action="/main" class="form-inline">
+            <form method="get" action="/task-list" class="form-inline">
                 <input type="text" name="filter" class="form-control mr-3" placeholder="Search by tag" value="${filter?ifExists}"/>
                 <button class="btn btn-primary" type="submit" >Search</button>
             </form>

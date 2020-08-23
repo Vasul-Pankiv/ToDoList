@@ -31,4 +31,8 @@ public class TaskService {
         task.setDescription(description);
         taskRepo.save(task);
     }
+
+    public void delete(Task task) {
+        taskRepo.delete(task);
+    }
 }
