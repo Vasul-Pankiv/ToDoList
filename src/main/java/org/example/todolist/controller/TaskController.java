@@ -46,6 +46,31 @@ public class TaskController {
         }
     }
 
+    @GetMapping("/task-list/edit")
+    public String getTask(
+            @RequestParam Task task,
+            Model model
+    ){
+
+        model.addAttribute("task",task);
+       return "taskEditor";
+    }
+
+    @PostMapping("/task-list/edit")
+    public String updateTask(
+            @RequestParam(required = false) User user,
+            @RequestParam Task task,
+            @RequestParam String title,
+            @RequestParam String tag,
+            @RequestParam String description
+    ){
+        taskService.updateTask(task,title,tag,description);
+        if(user != null){
+            return "redirect:/task-list?user="+user.getId();
+        }
+        return "redirect:/task-list";
+    }
+
     @GetMapping("/task-list/delete")
     public String deleteTask(
             @RequestParam(required = false) User user,

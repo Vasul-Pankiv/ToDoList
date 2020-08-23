@@ -31,9 +31,6 @@ public class MainController {
             @RequestParam(required = false) Task task,
             Model model
     ) {
-        if(task != null){
-
-        }
         Iterable<Task> tasks;
         if (filter != null && !filter.isEmpty()) {
             tasks = taskService.findByTag(filter);

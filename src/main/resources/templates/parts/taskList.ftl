@@ -14,10 +14,12 @@
             <a href="/task-list?user=${task.author.id}" class="card-link">${task.author.username}</a>
             <#if task.author.id == currentUserId || isAdmin>
                 <div>
-                    <a href="/task-list?user=${task.author.id}&task=${task.id}" class="card-link">
+                    <a href="/task-list/edit?user=${userId?if_exists}&task=${task.id}" class="card-link">
                         Edit
                     </a>
-                    <a href="/task-list/delete?user=${userId?if_exists}&task=${task.id}" class="btn py-0 btn-outline-dark">delete</a>
+                    <a href="/task-list/delete?user=${userId?if_exists}&task=${task.id}" class="btn py-0 btn-outline-dark">
+                        delete
+                    </a>
                 </div>
             </#if>
         </div>
