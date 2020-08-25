@@ -6,12 +6,22 @@
     <div class="form-group  mt-3">
         <form method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" name="title" class="form-control " placeholder="Title"
+                <input type="text" name="title" class="form-control ${(titleError??)?string('is-invalid','')}" placeholder="Title"
                        value="<#if task??>${task.title}</#if>"/>
+                <#if titleError??>
+                <div class="invalid-feedback">
+                    ${titleError}
+                </div>
+                </#if>
             </div>
             <div class="form-group">
-                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                <textarea name="description" class="form-control ${(descriptionError??)?string('is-invalid','')}" id="exampleFormControlTextarea1" rows="3"
                           placeholder="description"><#if task??>${task.description}</#if></textarea>
+                <#if descriptionError??>
+                    <div class="invalid-feedback">
+                        ${descriptionError}
+                    </div>
+                </#if>
             </div>
             <div class="form-group">
                 <input type="text" name="tag" class="form-control" placeholder="tag"

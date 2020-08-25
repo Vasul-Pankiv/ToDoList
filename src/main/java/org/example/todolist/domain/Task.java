@@ -1,6 +1,9 @@
 package org.example.todolist.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table (name = "tasks")
@@ -9,7 +12,12 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Title cannot be empty")
+    @Length(max = 55, message = "Title too long")
     private String title;
+
+    @NotBlank(message = "Task description cannot be empty")
+    @Length(max = 2048, message = "Task description too long")
     private String description;
 
     private String tag;

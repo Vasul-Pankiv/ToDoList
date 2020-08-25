@@ -1,9 +1,12 @@
 package org.example.todolist.domain;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -14,9 +17,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotBlank(message = "Username cannot be empty")
+    @Length(max = 12, message = "Username too long")
     private String username;
+
+    @NotBlank(message = "Password cannot be empty")
     private String password;
     private boolean active;
+    @NotBlank(message = "Email cannot be empty")
+    @Email(message = "Email is not correct")
     private String email;
     private String activationCode;
 
@@ -25,7 +34,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Task> tasks;
 
     public boolean isAdmin() {

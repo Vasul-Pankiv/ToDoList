@@ -8,8 +8,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -65,12 +67,21 @@ public class UserController {
 
     @PostMapping("/profile/edit")
     public String updateUserProfile(
-            @AuthenticationPrincipal User user,
-            @RequestParam String password,
-            @RequestParam String email
+            @AuthenticationPrincipal User CurrentUser,
+            @Valid User user,
+            BindingResult bindingResult,
+            Model model
+
     ){
-        userService.updateProfile(user,password,email);
-        return "redirect:/user/profile";
+        if(bindingResult.hasErrors()){
+            Map<String, String> errorsMap = UtilsController.getErrors(bindingResult);
+            model.mergeAttributes(errorsMap);
+            model.addAttribute("user",user);
+            return "profileEdit";
+        }else {
+            userService.updateProfile(CurrentUser,user.getUsername(),user.getPassword(), user.getEmail());
+            return "redirect:/user/profile";
+        }
     }
 
 }
